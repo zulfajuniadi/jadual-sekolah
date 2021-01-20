@@ -24,7 +24,12 @@
                             <td>
                                 {{schedule.start_time | time}} - {{schedule.end_time | time}}
                             </td>
-                            <td>
+                            <td ng-if="schedule.class_url">
+                                <a href="{{schedule.class_url}}" target="_blank">
+                                    {{schedule.name}}
+                                </a>
+                            </td>
+                            <td ng-if="!schedule.class_url">
                                 {{schedule.name}}
                             </td>
                         </tr>
