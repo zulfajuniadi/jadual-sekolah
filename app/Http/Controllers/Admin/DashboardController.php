@@ -29,7 +29,7 @@ class DashboardController extends Controller
     {
         $user = User::wherePublicSlug($slug)->firstOrFail();
         if($day = $request->get('class')) {
-            return Child::orderBy('name')->withoutGlobalScope(MyChildScope::class)->select('id', 'name')->get()->map(function($model) use ($day) {
+            return Child::whereUserId($user->id)->orderBy('name')->withoutGlobalScope(MyChildScope::class)->select('id', 'name')->get()->map(function($model) use ($day) {
                 $model->schedules = $model->schedules()->withoutGlobalScope(MyChildScope::class)
                     ->where('day', $day)
                     ->orderBy('start_time')
