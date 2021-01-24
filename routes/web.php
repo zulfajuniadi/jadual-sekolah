@@ -24,13 +24,11 @@ Route::get('/privacy', function () {
     return view('privacy');
 });
 
-Route::middleware('cache.headers:public;max_age=3600;etag')->group(function () {
-    Route::get('/avatar/{id}.svg', function ($id) {
-        $avatar_config = Child::withoutGlobalScope(MyChildScope::class)->findOrFail($id)->avatar_config;
-        $response = Response::make(view('svg', ['avatar_config' => $avatar_config]), 200);
-        $response->header('Content-Type', 'image/svg+xml');
-        return $response;
-    });
+Route::get('/avatar/{id}.svg', function ($id) {
+    $avatar_config = Child::withoutGlobalScope(MyChildScope::class)->findOrFail($id)->avatar_config;
+    $response = Response::make(view('svg', ['avatar_config' => $avatar_config]), 200);
+    $response->header('Content-Type', 'image/svg+xml');
+    return $response;
 });
 
 Route::get('/home', function () {
