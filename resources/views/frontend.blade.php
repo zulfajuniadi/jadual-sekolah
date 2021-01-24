@@ -22,20 +22,20 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jadualku.com/">
     <meta property="og:title" content="Helping Parents Cope With PdPR">
     <meta property="og:description" content="Helping parents monitor and track their children's PdPR schedule. Add this website to your child's home screen or desktop to help them keep track of classes.">
-    <meta property="og:image" content="">
+    <meta property="og:image" content="https://jadualku.com/img/schedule.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://jadualku.com/">
     <meta property="twitter:title" content="Helping Parents Cope With PdPR">
     <meta property="twitter:description" content="Helping parents monitor and track their children's PdPR schedule. Add this website to your child's home screen or desktop to help them keep track of classes.">
-    <meta property="twitter:image" content="">
+    <meta property="twitter:image" content="https://jadualku.com/img/schedule.jpg">
     
     <title>JadualKu.com - PdPR Made Easy</title>
     
