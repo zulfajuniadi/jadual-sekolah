@@ -11,7 +11,7 @@
         @include('schedule')
 
         <div class="text-center">
-            <a href="/app/login">Login to edit</a>
+            <a href="/">JadualKu.com</a>
         </div>
         <br>
         <br>
