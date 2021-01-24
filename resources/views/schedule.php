@@ -30,7 +30,7 @@
                                 {{schedule.start_time | time}} - {{schedule.end_time | time}}
                             </td>
                             <td>
-                                <button class="btn btn-primary btn-sm btn-block" ng-click="goToClass(schedule)" target="_blank">
+                                <button class="btn btn-sm btn-block" ng-class="{'btn-primary': !schedule.attended, 'btn-success': schedule.attended}" ng-click="goToClass(schedule)" target="_blank">
                                     {{schedule.name}}
                                 </button>
                             </td>

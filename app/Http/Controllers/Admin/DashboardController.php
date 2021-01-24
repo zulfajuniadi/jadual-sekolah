@@ -39,14 +39,17 @@ class DashboardController extends Controller
                     ->select('id', 'name', 'start_time', 'end_time', 'class_url')
                     ->get();
                 
-                foreach($model->schedules()->where('day', $day)->withoutGlobalScope(MyChildScope::class)->get() as $schedule) {
+                foreach($model->schedules()->where('day', $day)->withoutGlobalScope(MyChildScope::class)->get() as $index => $schedule) {
                     if($schedule->day == date('N')) {
-                        Attendance::withoutGlobalScope(MyChildScope::class)->updateOrCreate([
+                        $attendance = Attendance::withoutGlobalScope(MyChildScope::class)->updateOrCreate([
                             'user_id' => $schedule->user_id,
                             'child_id' => $schedule->child_id,
                             'schedule_id' => $schedule->id,
                             'class_date' => date('Y-m-d'),
                         ], []);
+                        if($attendance->attended_at != null) {
+                            $model->schedules[$index]->attended = true;
+                        }
                     }
                 }
 
@@ -62,15 +65,19 @@ class DashboardController extends Controller
             if($current) {
                 $schedule = Schedule::withoutGlobalScope(MyChildScope::class)->find($scheduleId);
 
-                if($schedule && $schedule->day == date('N') && $current->attended_at == null) {
+                if($schedule && 
+                    $schedule->day == date('N') && 
+                    $current->attended_at == null &&
+                    abs(date('H') - substr($schedule->start_time, 0, 2)) < 2
+                ) {
                     Child::withoutGlobalScope(MyChildScope::class)->find($current->child_id)->increment('points');
+                    Attendance::withoutGlobalScope(MyChildScope::class)->updateOrCreate([
+                        'schedule_id' => $scheduleId,
+                        'class_date' => date('Y-m-d'),
+                    ], [
+                        'attended_at' => Carbon::now(),
+                    ]);
                 }
-                Attendance::withoutGlobalScope(MyChildScope::class)->updateOrCreate([
-                    'schedule_id' => $scheduleId,
-                    'class_date' => date('Y-m-d'),
-                ], [
-                    'attended_at' => Carbon::now(),
-                ]);
             }
             return 'ok';
         }

@@ -41,6 +41,7 @@ angular.module('app', [])
 
     $scope.goToClass = function(schedule) {
         $http.get(location.pathname + '?attend=' + schedule.id).then(function(){
+            $scope.getClassList();
             if(schedule.class_url) {
                 window.open(schedule.class_url, '_blank');
             }
