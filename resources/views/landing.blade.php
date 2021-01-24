@@ -77,7 +77,7 @@
                 <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/schedule.jpg');"></div>
                 <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                     <h2>Easy To Use</h2>
-                    <p class="lead mb-0">Easy to use schedule for primary, secondary or even high school children.</p>
+                    <p class="lead mb-0">Easy to use for primary, secondary or even university students.</p>
                     <a target="_blank" href="/s/zulfa-juniadi">Example Schedule</a>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                 <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/attandance.jpg');"></div>
                 <div class="col-lg-6 my-auto showcase-text">
                     <h2>Monitor Attendance</h2>
-                    <p class="lead mb-0">Monitor attendance of your child's classes filterable by name and date.</p>
+                    <p class="lead mb-0">Monitor your child's attendance filterable by name and date.</p>
                 </div>
             </div>
             <div class="row no-gutters">
