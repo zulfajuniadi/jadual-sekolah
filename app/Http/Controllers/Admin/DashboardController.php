@@ -22,6 +22,23 @@ class DashboardController extends Controller
                     ->orderBy('start_time')
                     ->select('id', 'name', 'start_time', 'end_time', 'class_url')
                     ->get();
+                
+                foreach($model->schedules()->where('day', $day)->orderBy('start_time')->get() as $schedule) {
+                    if($schedule->day == date('N')) {
+                        $attendance = Attendance::updateOrCreate([
+                            'user_id' => $schedule->user_id,
+                            'child_id' => $schedule->child_id,
+                            'schedule_id' => $schedule->id,
+                            'class_date' => date('Y-m-d'),
+                        ], []);
+                        foreach($model->schedules as $schedule) {
+                            if($schedule->id == $attendance->schedule_id && $attendance->attended_at != null) {
+                                $schedule->attended = true;
+                            }
+                        }
+                    }
+                }
+    
                 return $model;
             });
         }
@@ -39,7 +56,7 @@ class DashboardController extends Controller
                     ->select('id', 'name', 'start_time', 'end_time', 'class_url')
                     ->get();
                 
-                foreach($model->schedules()->where('day', $day)->withoutGlobalScope(MyChildScope::class)->get() as $index => $schedule) {
+                foreach($model->schedules()->where('day', $day)->orderBy('start_time')->withoutGlobalScope(MyChildScope::class)->get() as $schedule) {
                     if($schedule->day == date('N')) {
                         $attendance = Attendance::withoutGlobalScope(MyChildScope::class)->updateOrCreate([
                             'user_id' => $schedule->user_id,
@@ -47,8 +64,10 @@ class DashboardController extends Controller
                             'schedule_id' => $schedule->id,
                             'class_date' => date('Y-m-d'),
                         ], []);
-                        if($attendance->attended_at != null) {
-                            $model->schedules[$index]->attended = true;
+                        foreach($model->schedules as $schedule) {
+                            if($schedule->id == $attendance->schedule_id && $attendance->attended_at != null) {
+                                $schedule->attended = true;
+                            }
                         }
                     }
                 }
