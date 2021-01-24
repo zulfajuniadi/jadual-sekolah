@@ -13,7 +13,8 @@
         <div class="text-center">
             <a href="/app/login">Login to edit</a>
         </div>
-        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-600da788eb19a090"></script>
+        <br>
+        <br>
     </div>
 
     @yield('before_scripts')
