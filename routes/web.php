@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/app');
+    return view('landing');
+});
+
+Route::get('/privacy', function () {
+    return view('privacy');
 });
 
 Route::get('/avatar/{id}.svg', function ($id) {

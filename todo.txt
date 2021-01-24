@@ -1,0 +1,15 @@
+/ duplicate
+/ avatar maker
+/ analytics
+/ share buttons
+/ attendence
+/ stars / gamification
+- landing page
+- meta tags
+
+- add to homescreen
+- push notification
+- daily report
+- support email
+- bm
+- donate button

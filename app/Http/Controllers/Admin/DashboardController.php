@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\Child;
+use App\Models\Schedule;
 use App\Models\Scopes\MyChildScope;
 use App\Models\User;
 use Carbon\Carbon;
@@ -51,16 +52,19 @@ class DashboardController extends Controller
             });
         }
         if($request->get('attend')) {
+            $scheduleId = $request->get('attend');
             $current = Attendance::withoutGlobalScope(MyChildScope::class)->where([
-                'schedule_id' => $request->get('attend'),
+                'schedule_id' => $scheduleId,
                 'class_date' => date('Y-m-d'),
             ])->first();
             if($current) {
-                if($current->attended_at == null) {
+                $schedule = Schedule::withoutGlobalScope(MyChildScope::class)->find($scheduleId);
+
+                if($schedule && $schedule->day == date('N') && $current->attended_at == null) {
                     Child::withoutGlobalScope(MyChildScope::class)->find($current->child_id)->increment('points');
                 }
                 Attendance::withoutGlobalScope(MyChildScope::class)->updateOrCreate([
-                    'schedule_id' => $request->get('attend'),
+                    'schedule_id' => $scheduleId,
                     'class_date' => date('Y-m-d'),
                 ], [
                     'attended_at' => Carbon::now(),
