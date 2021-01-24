@@ -40,12 +40,14 @@ class DashboardController extends Controller
                     ->get();
                 
                 foreach($model->schedules()->where('day', $day)->withoutGlobalScope(MyChildScope::class)->get() as $schedule) {
-                    Attendance::withoutGlobalScope(MyChildScope::class)->updateOrCreate([
-                        'user_id' => $schedule->user_id,
-                        'child_id' => $schedule->child_id,
-                        'schedule_id' => $schedule->id,
-                        'class_date' => date('Y-m-d'),
-                    ], []);
+                    if($schedule->day == date('N')) {
+                        Attendance::withoutGlobalScope(MyChildScope::class)->updateOrCreate([
+                            'user_id' => $schedule->user_id,
+                            'child_id' => $schedule->child_id,
+                            'schedule_id' => $schedule->id,
+                            'class_date' => date('Y-m-d'),
+                        ], []);
+                    }
                 }
 
                 return $model;
