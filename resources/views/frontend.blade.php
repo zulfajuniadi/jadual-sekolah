@@ -80,8 +80,9 @@
                     </ul>
                     <p class="text-muted small mb-4 mb-lg-0">Service provided free of charge without any warranties. <br/> &copy; jadualku.com {{date('Y')}}. All Rights Reserved.</p>
                 </div>
-                <div class="col-lg-6 h-100 text-center text-lg-right my-auto d-none">
-                    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-600da788eb19a090"></script>
+                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                    <div class="fb-share-button" data-href="https://jadualku.com" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjadualku.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+
                     {{-- <ul class="list-inline mb-0">
                         <li class="list-inline-item mr-3">
                             <a href="#">
@@ -104,6 +105,9 @@
         </div>
     </footer>
     <!-- Global site tag (gtag.js) - Google Analytics -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=1790171384588486" nonce="xQtLZW47"></script>
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RVE5351F6L"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
