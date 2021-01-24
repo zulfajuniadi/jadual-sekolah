@@ -34,7 +34,7 @@ return [
     'home_link' => 'app',
 
     // Content of the HTML meta robots tag to prevent indexing and link following
-    'meta_robots_content' => 'noindex, nofollow',
+    'meta_robots_content' => 'all',
 
     // ------
     // STYLES
