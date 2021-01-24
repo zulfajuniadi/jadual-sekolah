@@ -138,7 +138,7 @@
                 </div>
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
                     <div class="form-row">
-                        <div class="col-3 mx-auto">
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mx-auto">
                             <a href="/app/register" class="btn btn-block btn-lg btn-primary">Sign up!</a>
                         </div>
                     </div>
