@@ -29,9 +29,11 @@
                             <td>
                                 {{schedule.start_time | time}} - {{schedule.end_time | time}}
                             </td>
-                            <button class="btn btn-primary btn-sm btn-block" ng-click="goToClass(schedule)" target="_blank">
-                                {{schedule.name}}
-                            </button>
+                            <td>
+                                <button class="btn btn-primary btn-sm btn-block" ng-click="goToClass(schedule)" target="_blank">
+                                    {{schedule.name}}
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
