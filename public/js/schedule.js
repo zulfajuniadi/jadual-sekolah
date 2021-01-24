@@ -39,6 +39,14 @@ angular.module('app', [])
             })
     }
 
+    $scope.goToClass = function(schedule) {
+        $http.get(location.pathname + '?attend=' + schedule.id).then(function(){
+            if(schedule.class_url) {
+                window.open(schedule.class_url, '_blank');
+            }
+        });
+    }
+
     $scope.getClassList();
 })
 

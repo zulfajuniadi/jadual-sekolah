@@ -15,9 +15,13 @@
             <div class="div">
                 <div class="card-header">
                     <img src="/avatar/{{child.id}}.svg" class="schedule-avatar" alt="">
-                    <strong>
-                        {{child.name}}
-                    </strong>
+                    <div>
+                        <strong>
+                            {{child.name}}
+                        </strong>
+                        <br>
+                        <i class="la la-star" style="color:gold"></i> {{child.points}}
+                    </div>
                 </div>
                 <table class="table table-bordered bg-white">
                     <tbody>
@@ -26,9 +30,9 @@
                                 {{schedule.start_time | time}} - {{schedule.end_time | time}}
                             </td>
                             <td ng-if="schedule.class_url">
-                                <a href="{{schedule.class_url}}" target="_blank">
+                                <button class="btn btn-primary btn-sm btn-block" ng-click="goToClass(schedule)" target="_blank">
                                     {{schedule.name}}
-                                </a>
+                                </button>
                             </td>
                             <td ng-if="!schedule.class_url">
                                 {{schedule.name}}

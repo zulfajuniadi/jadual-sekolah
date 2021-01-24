@@ -22,6 +22,14 @@
 
   @yield('after_scripts')
   @stack('after_scripts')
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RVE5351F6L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
+    gtag('config', 'G-RVE5351F6L');
+  </script>
 </body>
 </html>

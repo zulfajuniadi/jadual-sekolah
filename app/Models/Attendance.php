@@ -6,7 +6,7 @@ use App\Models\Scopes\MyChildScope;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Schedule extends Model
+class Attendance extends Model
 {
     use CrudTrait;
 
@@ -16,7 +16,7 @@ class Schedule extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'schedules';
+    protected $table = 'attendances';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -30,21 +30,21 @@ class Schedule extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
 
     public function child()
     {
         return $this->belongsTo(Child::class);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | RELATIONS
-    |--------------------------------------------------------------------------
-    */
+    public function schedule()
+    {
+        return $this->belongsTo(Schedule::class);
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -62,11 +62,6 @@ class Schedule extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-
-    public function getAttendanceDisplayAttribute()
-    {
-        return $this->name . ' [' . $this->start_time . ' - ' . $this->end_time . ']';
-    }
 
     /*
     |--------------------------------------------------------------------------
