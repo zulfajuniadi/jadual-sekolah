@@ -63,6 +63,7 @@ class AttendanceCrudController extends CrudController
             ],
             [
                 'name' => 'class_date',
+                'type' => 'date',
             ],
             [
                 'name' => 'attended_at',
@@ -77,6 +78,16 @@ class AttendanceCrudController extends CrudController
             'label' => 'Child'
         ], Child::orderBy('name')->pluck('name', 'id')->toArray(), function($value) { // if the filter is active
             $this->crud->addClause('where', 'child_id', $value);
+        });
+
+        $this->crud->addFilter([
+            'type'  => 'date',
+            'name'  => 'class_date',
+            'label' => 'Date'
+          ],
+        false,
+          function ($value) { // if the filter is active, apply these constraints
+            $this->crud->addClause('where', 'class_date', $value);
         });
 
         /**
