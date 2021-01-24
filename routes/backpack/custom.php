@@ -18,5 +18,6 @@ Route::group([
 ], function () { // custom admin routes
     Route::get('dashboard', 'DashboardController@index');
     Route::crud('child', 'ChildCrudController');
+    Route::get('child/{id}/avatar', 'ChildCrudController@avatar');
     Route::crud('schedule', 'ScheduleCrudController');
 }); // this should be the absolute last line of this file

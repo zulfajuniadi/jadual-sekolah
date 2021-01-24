@@ -122,7 +122,6 @@ return [
     'scripts' => [
         // Backstrap includes jQuery, Bootstrap, CoreUI, PNotify, Popper
         'packages/backpack/base/js/bundle.js',
-        'js/dashboard.js',
         'js/schedule-create.js',
 
         // examples (everything inside the bundle, loaded from CDN)

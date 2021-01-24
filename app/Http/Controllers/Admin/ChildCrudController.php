@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ChildRequest;
+use App\Models\Child;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Prologue\Alerts\Facades\Alert;
@@ -42,7 +43,11 @@ class ChildCrudController extends CrudController
     {
         // CRUD::setFromDb(); // columns
         $this->crud->addColumns([
-            'name'
+            [
+                'name' => 'name',
+                'label' => 'Name',
+                'type' => 'avatar_name'
+            ]
         ]);
 
         /**
@@ -89,7 +94,11 @@ class ChildCrudController extends CrudController
     {
         CRUD::setValidation(ChildRequest::class);
 
-        $this->crud->addFields(['name']);
+        $this->crud->addFields(['name', [
+            'name' => 'avatar_config',
+            'label' => 'Avatar',
+            'type' => 'avatar'
+        ]]);
 
         // CRUD::setFromDb(); // fields
 
@@ -109,5 +118,11 @@ class ChildCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    public function avatar($id)
+    {
+        $child = Child::findOrFail($id);
+        return view('avatar', compact('child'));
     }
 }

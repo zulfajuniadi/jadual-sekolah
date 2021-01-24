@@ -63,9 +63,19 @@ class Child extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function getAvatarConfigAttribute($value)
+    {
+        return json_decode($value ?? '{}', true);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+
+    public function setAvatarConfigAttribute($value)
+    {
+        $this->attributes['avatar_config'] = json_encode($value ?? []);
+    }
 }

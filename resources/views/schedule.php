@@ -14,6 +14,7 @@
         <div class="col-lg-4 col-md-6 text-center" ng-repeat="child in children">
             <div class="div">
                 <div class="card-header">
+                    <img src="/avatar/{{child.id}}.svg" class="schedule-avatar" alt="">
                     <strong>
                         {{child.name}}
                     </strong>
@@ -44,3 +45,4 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA==" crossorigin="anonymous"></script>
+<script src="/js/schedule.js"></script>

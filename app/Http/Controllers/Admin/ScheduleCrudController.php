@@ -6,6 +6,7 @@ use App\Http\Requests\ScheduleRequest;
 use App\Models\Child;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Facades\Route;
 use Prologue\Alerts\Facades\Alert;
 
 /**
@@ -68,6 +69,13 @@ class ScheduleCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->addFilter([
+            'name'  => 'child',
+            'type'  => 'dropdown',
+            'label' => 'Child'
+        ], Child::orderBy('name')->pluck('name', 'id')->toArray(), function($value) { // if the filter is active
+            $this->crud->addClause('where', 'child_id', $value);
+        });
 
         $this->crud->addFilter([
             'name'  => 'day',
@@ -83,14 +91,6 @@ class ScheduleCrudController extends CrudController
             '7' => 'Sunday',
         ], function($value) { // if the filter is active
             $this->crud->addClause('where', 'day', $value);
-        });
-
-        $this->crud->addFilter([
-            'name'  => 'child',
-            'type'  => 'dropdown',
-            'label' => 'Child'
-        ], Child::orderBy('name')->pluck('name', 'id')->toArray(), function($value) { // if the filter is active
-            $this->crud->addClause('where', 'child_id', $value);
         });
 
         // CRUD::setFromDb(); // columns
@@ -187,5 +187,41 @@ class ScheduleCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    /**
+     * Add the default settings, buttons, etc that this operation needs.
+     */
+    protected function setupCloneDefaults()
+    {
+        $this->crud->allowAccess('clone');
+
+        $this->crud->operation('clone', function () {
+            $this->crud->loadDefaultOperationSettingsFromConfig();
+        });
+
+        $this->crud->operation(['list', 'show'], function () {
+            $this->crud->addButton('line', 'clone', 'view', 'crud::buttons.clone', 'start');
+        });
+    }
+    
+    protected function setupCloneRoutes($segment, $routeName, $controller)
+    {
+        Route::get($segment.'/{id}/clone', [
+            'as'        => $routeName.'.clone',
+            'uses'      => $controller.'@clone',
+            'operation' => 'clone',
+        ]);
+    }
+    
+    public function clone($id)
+    {
+        $this->crud->hasAccessOrFail('clone');
+
+        $clonedEntry = $this->crud->model->findOrFail($id)->replicate();
+
+        $clonedEntry->push();
+
+        return redirect('/app/schedule/' . $clonedEntry->id . '/edit');
     }
 }
