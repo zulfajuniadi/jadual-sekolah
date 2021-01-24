@@ -4,8 +4,8 @@
 / share buttons
 / attendence
 / stars / gamification
-- landing page
-- meta tags
+/ landing page
+/ meta tags
 
 - add to homescreen
 - push notification
