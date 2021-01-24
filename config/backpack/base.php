@@ -72,7 +72,7 @@ return [
     // ------
 
     // Menu logo. You can replace this with an <img> tag if you have a logo.
-    'project_logo'   => '<b>Jadual</b>Sekolah',
+    'project_logo'   => '<b>Jadual</b>Ku',
 
     // Show / hide breadcrumbs on admin panel pages.
     'breadcrumbs' => false,
@@ -109,7 +109,7 @@ return [
     'developer_name' => 'Zulfa Juniadi',
 
     // Developer website. Link in footer. Type false if you want to hide it.
-    'developer_link' => 'http://www.zulfajuniadi.com',
+    'developer_link' => '',
 
     // Show powered by Laravel Backpack in the footer? true/false
     'show_powered_by' => false,
