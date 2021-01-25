@@ -47,7 +47,7 @@
                                 <img src="/avatar/3.svg" alt="" style="width:100px;height:100px;border-radius:50px;">
                             </div>
                         </div>
-                        <h3>Tambah anak anda</h3>
+                        <h3>Daftar anak anda</h3>
                         <p class="lead mb-0">
                             Masukkan nama anak anda dan avatarnya di platform kami.
                         </p>
