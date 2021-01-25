@@ -36,3 +36,4 @@ Route::get('/home', function () {
 });
 
 Route::get('/s/{slug}', 'App\\Http\\Controllers\\Admin\\DashboardController@view')->middleware('slugauth');
+Route::get('/c/{slug}.ical', 'App\\Http\\Controllers\\Admin\\DashboardController@calendar')->middleware('slugauth');

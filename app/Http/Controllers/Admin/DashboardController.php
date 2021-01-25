@@ -9,6 +9,9 @@ use App\Models\Schedule;
 use App\Models\Scopes\MyChildScope;
 use App\Models\User;
 use Carbon\Carbon;
+use Eluceo\iCal\Component\Calendar;
+use Eluceo\iCal\Component\Event;
+use Eluceo\iCal\Property\Event\RecurrenceRule;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -108,5 +111,51 @@ class DashboardController extends Controller
         }
 
         return view('welcome');
+    }
+
+    public function calendar($slug)
+    {
+        $user = User::wherePublicSlug($slug)->firstOrFail();
+        $vCalendar = new Calendar(url()->current());
+        $vCalendar->setName('JadualKu Calendar - ' . $user->name);
+        $vCalendar->setTimezone(config('app.timezone'));
+        $dayMaps = [
+            '1' => 'Monday',
+            '2' => 'Tuesday',
+            '3' => 'Wednesday',
+            '4' => 'Thursday',
+            '5' => 'Friday',
+            '6' => 'Saturday',
+            '7' => 'Sunday',
+        ];
+        $occurenceMaps = [
+            '1' => 'MO',
+            '2' => 'TU',
+            '3' => 'WE',
+            '4' => 'TH',
+            '5' => 'FR',
+            '6' => 'SA',
+            '7' => 'SU',
+        ];
+        foreach($user->schedules()->withoutGlobalScope(MyChildScope::class)->get() as $schedule) {
+            $child = Child::withoutGlobalScope(MyChildScope::class)->find($schedule->child_id);
+            $startTime = date('Y-m-d ', strtotime('last ' . $dayMaps[$schedule->day])) . $schedule->start_time;
+            $endTime = date('Y-m-d ', strtotime('last ' . $dayMaps[$schedule->day])) . $schedule->end_time;
+            $vEvent = new Event();
+            $vEvent
+                ->setUniqueId($user->public_slug . $schedule->id)
+                ->setDtStart(new \DateTime($startTime))
+                ->setDtEnd(new \DateTime($endTime))
+                ->setSummary($schedule->name . ' - ' . $child->name)
+                ->addRecurrenceRule((new RecurrenceRule())->setByDay($occurenceMaps[$schedule->day])->setUntil(new \DateTime((date('Y') + 1) . '-01-01 00:00:00')))
+                ;
+            if($schedule->class_url) {
+                $vEvent->addUrlAttachment($schedule->class_url);
+            }
+            $vCalendar->addComponent($vEvent);
+        }
+        header('Content-Type: text/calendar; charset=utf-8');
+        header('Content-Disposition: attachment; filename="Kalendar JadualKu ' . $user->name . '.ics"');
+        return $vCalendar->render();
     }
 }

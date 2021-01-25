@@ -44,12 +44,17 @@ class User extends Authenticatable
 
     public function setPublicSlug()
     {
-        $slug = Str::slug($this->name);
+        $slug = Str::slug($this->name) . '-' . uniqid();
         $count = User::wherePublicSlug($slug)->count();
         if($count > 0) {
             $slug = $slug . '-' . ($count + 1);
         }
         $this->public_slug = $slug;
         $this->save();
+    }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
     }
 }
