@@ -77,26 +77,32 @@ class DashboardController extends Controller
         }
         if($request->get('attend')) {
             $scheduleId = $request->get('attend');
-            $current = Attendance::withoutGlobalScope(MyChildScope::class)->where([
+            $attendance = Attendance::withoutGlobalScope(MyChildScope::class)->where([
                 'schedule_id' => $scheduleId,
                 'class_date' => date('Y-m-d'),
             ])->first();
-            if($current) {
+            if($attendance) {
                 $schedule = Schedule::withoutGlobalScope(MyChildScope::class)->find($scheduleId);
 
                 if($schedule && 
                     $schedule->day == date('N') && 
-                    $current->attended_at == null &&
+                    $attendance->attended_at == null &&
                     abs(date('H') - substr($schedule->start_time, 0, 2)) < 2
                 ) {
-                    Child::withoutGlobalScope(MyChildScope::class)->find($current->child_id)->increment('points');
-                    Attendance::withoutGlobalScope(MyChildScope::class)->updateOrCreate([
-                        'schedule_id' => $scheduleId,
-                        'class_date' => date('Y-m-d'),
-                    ], [
-                        'attended_at' => Carbon::now(),
-                    ]);
+                    Child::withoutGlobalScope(MyChildScope::class)->find($attendance->child_id)->increment('points');
+                    $attendance->attended_at = Carbon::now();
+                    $attendance->save();
+                } else {
+                    return [
+                        'message' => 'noop',
+                        $schedule->day,
+                        date('N'),
+                        $schedule->start_time,
+                        abs(date('H') - substr($schedule->start_time, 0, 2))
+                    ];
                 }
+            } else {
+                return 'attendance not found';
             }
             return 'ok';
         }
