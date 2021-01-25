@@ -488,7 +488,7 @@ svg.avatar-editor {
     background-color:#ffdbb4;
 }
 .eyes,.eyebrows,.mouths,.hairstyles,.facialhairs,.clothes,.glasses,.tattoos,.accesories {
-    background-image:url(https://i.imgur.com/q0DdlUI.png);
+    background-image:url(/images/avatar.png);
 }
 .glassopacity {
     text-align:center;
