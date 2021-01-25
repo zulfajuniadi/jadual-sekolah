@@ -12,7 +12,7 @@
                 <a href="/s/{{backpack_user()->public_slug}}"><?=url('/s/' . backpack_user()->public_slug)?></a> <button data-clipboard-text="<?=url('/s/' . backpack_user()->public_slug)?>" class="btn btn-sm btn-text" id="copy-link"><i class="la la-copy"></i></button> <span id="copy-link-success" class="text-success" style="font-size: 12px; display: none">Telah Copy</span>
             </li>
             <li>
-                Masukkan jadual ini ke dalam aplikasi Calendar anda: <br>
+                Masukkan jadual ini ke dalam <a href="https://twitter.com/zuljzul/status/1353760275334221825?s=20" target="_blank">aplikasi kalendar</a> anda: <br>
                 <span><?=url('/c/' . backpack_user()->public_slug . '.ical')?></span> <button data-clipboard-text="<?=url('/c/' . backpack_user()->public_slug . '.ical')?>" class="btn btn-sm btn-text" id="copy-ical"><i class="la la-copy"></i></button> <span id="copy-ical-success" class="text-success" style="font-size: 12px; display: none">Telah Copy</span>
             </li>
         </ul>
