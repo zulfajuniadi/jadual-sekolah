@@ -95,10 +95,10 @@ class DashboardController extends Controller
                 } else {
                     return [
                         'message' => 'noop',
-                        $schedule->day,
-                        date('N'),
-                        $schedule->start_time,
-                        abs(date('H') - substr($schedule->start_time, 0, 2))
+                        'sc_day' => $schedule->day,
+                        'td_day' => date('N'),
+                        'start' => $schedule->start_time,
+                        'diff' => abs(date('H') - substr($schedule->start_time, 0, 2))
                     ];
                 }
             } else {
