@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-9 mx-auto">
-                    <h1 class="mb-5">Membantu Ibu Bapa <br> Menghadapi PdPR</h1>
+                    <h1 class="mb-5">Membantu Ibu Bapa <br> Mengharungi PdPR</h1>
                 </div>
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto d-none">
                     <form>
