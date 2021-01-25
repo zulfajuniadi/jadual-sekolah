@@ -29,7 +29,7 @@
         <li>Improve, personalize, and expand our website</li>
         <li>Understand and analyze how you use our website</li>
         <li>Develop new products, services, features, and functionality</li>
-        <li>Communicate with you, either directly including for customer service, to provide you with updates and other information relating to the website</li>
+        <li>Communicate with you directly including for customer service, to provide you with updates and other information relating to the website</li>
         <li>Send you emails</li>
         <li>Find and prevent fraud</li>
     </ul>
