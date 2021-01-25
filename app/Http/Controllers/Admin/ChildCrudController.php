@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ScheduleImport;
 use App\Exports\ScheduleExport;
+use App\Exports\ExampleScheduleExport;
 use Illuminate\Http\Request;
 
 /**
@@ -144,9 +145,14 @@ class ChildCrudController extends CrudController
             'uses'      => $controller.'@showSchedule',
             'operation' => 'schedule',
         ]);
-        Route::get($segment.'/{id}/schedule/get', [
-            'as'        => $routeName.'.schedule.get',
+        Route::get($segment.'/{id}/schedule/download', [
+            'as'        => $routeName.'.schedule.download',
             'uses'      => $controller.'@getSchedule',
+            'operation' => 'schedule',
+        ]);
+        Route::get($segment.'/{id}/schedule/example', [
+            'as'        => $routeName.'.schedule.example',
+            'uses'      => $controller.'@getExampleSchedule',
             'operation' => 'schedule',
         ]);
         Route::post($segment.'/{id}/schedule/import', [
@@ -199,8 +205,16 @@ class ChildCrudController extends CrudController
         });
     }
 
-    public function getSchedule() 
+    public function getExampleSchedule() 
     {
-        return Excel::download(new ScheduleExport, 'jadualku.xlsx');
+        return Excel::download(new ExampleScheduleExport, 'jadualku.xlsx');
+    }
+
+    public function getSchedule($id) 
+    {
+        $user_id = backpack_user()->id;
+        $child_id = $id;
+
+        return Excel::download(new ScheduleExport($user_id, $child_id), 'jadualku_'.$user_id.'.xlsx');
     }
 }

@@ -11,12 +11,10 @@ HeadingRowFormatter::default('none');
 
 class ScheduleImport implements ToModel, WithHeadingRow
 {
-
     function __construct($user_id, $child_id) {
         $this->user_id = $user_id;
         $this->child_id = $child_id;
-      }
-    
+    }
 
     public function model(array $row)
     {
