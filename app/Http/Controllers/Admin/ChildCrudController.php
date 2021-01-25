@@ -176,15 +176,18 @@ class ChildCrudController extends CrudController
         $user_id = backpack_user()->id;
         $child_id = $id;
 
-        $File = $request->file('jadual');
-        $FileName = date('Y-m-d_h-ia_').$File->getClientOriginalName();
-        Storage::disk('public')->putFileAs('imports/', $File, $FileName);
-        $schdule = Excel::import(new ScheduleImport($user_id, $child_id), public_path('/storage/imports/'.$FileName));
-
-        // show a success message
-        \Alert::success('Jadual berjaya dimuat naik!')->flash();
-
-        return \Redirect::to($this->crud->route);
+        if($request->hasFile('jadual')){
+            $File = $request->file('jadual');
+            $FileName = date('Y-m-d_h-ia_').$File->getClientOriginalName();
+            Storage::disk('public')->putFileAs('imports/', $File, $FileName);
+            $schdule = Excel::import(new ScheduleImport($user_id, $child_id), public_path('/storage/imports/'.$FileName));
+    
+            // show a success message
+            \Alert::success('Muat naik jadual berjaya!')->flash();
+            return \Redirect::to($this->crud->route);
+        }
+        \Alert::error('Muat naik jadual gagal!')->flash();
+        return \Redirect::to($this->crud->route.'/'.$id.'/schedule');
     }
 
     protected function setupScheduleDefaults()

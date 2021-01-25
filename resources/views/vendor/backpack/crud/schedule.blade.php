@@ -38,7 +38,7 @@ action="{{ url($crud->route.'/'.$entry->getKey()).'/schedule/import' }}"
           <div class="form-group col-sm-12 required">    
             <label>Sila Pilih Jadual</label>
             <br>
-            <input type="file" name="jadual">
+            <input type="file" name="jadual" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required/>
           </div>
         </div>
       </div>
