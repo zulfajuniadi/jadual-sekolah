@@ -24,7 +24,7 @@ return [
     // ----
 
     // Project name. Shown in the window title.
-    'project_name' => 'Jadual Sekolah',
+    'project_name' => 'JadualKu',
 
     // When clicking on the admin panel's top-left logo/name,
     // where should the user be redirected?
