@@ -381,7 +381,7 @@
         </svg>
         <div id='avatar-footer'>
             <div id='options'>
-                <div class="form-inline">
+                <div class="form-inline" style="flex-flow: row nowrap !important">
                     <button type="button" id="moveleft" class="btn-primary btn">
                         <i class="la la-arrow-left"></i>
                     </button>
