@@ -30,7 +30,7 @@ class AttendanceCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Attendance::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/attendance');
-        CRUD::setEntityNameStrings('attendance', 'attendances');
+        CRUD::setEntityNameStrings('Kehadiran', 'Kehadiran');
     }
 
     /**
@@ -47,10 +47,12 @@ class AttendanceCrudController extends CrudController
                 'type' => 'select',
                 'entity' => 'child', 
                 'model' => Child::class,
-                'attribute' => 'name' 
+                'attribute' => 'name',
+                'label' => 'Anak',
             ],
             [
                 'name' => 'schedule_id',
+                'label' => 'Kelas',
                 'type' => 'select',
                 'entity' => 'schedule', 
                 'model' => Schedule::class,
@@ -63,19 +65,19 @@ class AttendanceCrudController extends CrudController
             ],
             [
                 'name' => 'class_date',
+                'label' => 'Tarikh Kelas',
                 'type' => 'date',
             ],
             [
                 'name' => 'attended_at',
-                // 'label' => 'Has Attended',
-                // 'type' => 'boolean'
+                'label' => 'Hadir Pada',
             ],
         ]);
 
         $this->crud->addFilter([
             'name'  => 'child',
             'type'  => 'dropdown',
-            'label' => 'Child'
+            'label' => 'Anak'
         ], Child::orderBy('name')->pluck('name', 'id')->toArray(), function($value) { // if the filter is active
             $this->crud->addClause('where', 'child_id', $value);
         });
@@ -83,7 +85,7 @@ class AttendanceCrudController extends CrudController
         $this->crud->addFilter([
             'type'  => 'date',
             'name'  => 'class_date',
-            'label' => 'Date'
+            'label' => 'Tarikh'
           ],
         false,
           function ($value) { // if the filter is active, apply these constraints

@@ -26,18 +26,18 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jadualku.com/">
-    <meta property="og:title" content="Helping Parents Cope With PdPR">
-    <meta property="og:description" content="Helping parents monitor and track their children's PdPR schedule. Add this website to your child's home screen or desktop to help them keep track of classes.">
+    <meta property="og:title" content="PdPR Dengan Mudah!">
+    <meta property="og:description" content="Membantu Ibu bapa untuk memantau kehadiran PdPR anak-anak. Simpan halaman ini di Desktop atau Home Screen peranti anak anda.">
     <meta property="og:image" content="https://jadualku.com/img/schedule.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://jadualku.com/">
-    <meta property="twitter:title" content="Helping Parents Cope With PdPR">
-    <meta property="twitter:description" content="Helping parents monitor and track their children's PdPR schedule. Add this website to your child's home screen or desktop to help them keep track of classes.">
+    <meta property="twitter:title" content="PdPR Dengan Mudah!">
+    <meta property="twitter:description" content="Membantu Ibu bapa untuk memantau kehadiran PdPR anak-anak. Simpan halaman ini di Desktop atau Home Screen peranti anak anda.">
     <meta property="twitter:image" content="https://jadualku.com/img/schedule.jpg">
     
-    <title>JadualKu.com - PdPR Made Easy</title>
+    <title>JadualKu.com - Permudahkan PdPR</title>
     
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -58,7 +58,7 @@
     <nav class="navbar navbar-light bg-light static-top">
         <div class="container">
             <a class="navbar-brand" href="/"><strong>Jadual</strong>Ku</a>
-            <a class="btn btn-primary" href="/app/login">Sign In</a>
+            <a class="btn btn-primary" href="/app/login">Log Masuk</a>
         </div>
     </nav>
     
@@ -71,14 +71,14 @@
                 <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
                     <ul class="list-inline mb-2">
                         <li class="list-inline-item">
-                            <a href="mailto:zulfajuniadi@gmail.com">Support Email</a>
+                            <a href="mailto:zulfajuniadi@gmail.com">Bantuan Emel</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="/privacy">Privacy Policy</a>
+                            <a href="/privacy">Dasar Privasi</a>
                         </li>
                     </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">Service provided free of charge without any warranties. <br/> &copy; jadualku.com {{date('Y')}}. All Rights Reserved.</p>
+                    <p class="text-muted small mb-4 mb-lg-0">Servis diberi percuma tanpa waranti. Bantu pembangunan kod sumber di <a target="_blank" href="https://github.com/zulfajuniadi/jadual-sekolah">Github</a>. <br/> &copy; jadualku.com {{date('Y')}}. All Rights Reserved.</p>
                 </div>
                 <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
                     <div class="fb-share-button" data-href="https://jadualku.com" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjadualku.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>

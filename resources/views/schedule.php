@@ -1,7 +1,7 @@
 <div id="schedule" ng-app="app" ng-controller="MainController" ng-cloak>
 
     <h3 class="mb-4 text-center">
-        Schedule for {{selectedDayName}}
+        Jadual Hari {{selectedDayName}}
     </h3>
 
     <div class="btn-group mt-3 text-center d-block">

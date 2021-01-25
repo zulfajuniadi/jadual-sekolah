@@ -3,7 +3,7 @@
 @section('content')
 @include('schedule')
 <div class="text-center">
-    <a href="/s/{{backpack_user()->public_slug}}">Add this link in your child's browser: <?=url('/s/' . backpack_user()->public_slug)?></a>
+    <a href="/s/{{backpack_user()->public_slug}}">Simpan pautan ini dalam pelayar anak anda: <?=url('/s/' . backpack_user()->public_slug)?></a>
 </div>
 <br>
 <br>

@@ -31,7 +31,7 @@ class ScheduleCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Schedule::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/schedule');
-        CRUD::setEntityNameStrings('schedule', 'schedules');
+        CRUD::setEntityNameStrings('Jadual', 'Jadual');
     }
 
     /**
@@ -72,7 +72,7 @@ class ScheduleCrudController extends CrudController
         $this->crud->addFilter([
             'name'  => 'child',
             'type'  => 'dropdown',
-            'label' => 'Child'
+            'label' => 'Anak'
         ], Child::orderBy('name')->pluck('name', 'id')->toArray(), function($value) { // if the filter is active
             $this->crud->addClause('where', 'child_id', $value);
         });
@@ -80,15 +80,15 @@ class ScheduleCrudController extends CrudController
         $this->crud->addFilter([
             'name'  => 'day',
             'type'  => 'dropdown',
-            'label' => 'Day'
+            'label' => 'Hari'
         ], [
-            '1' => 'Monday',
-            '2' => 'Tuesday',
-            '3' => 'Wednesday',
-            '4' => 'Thursday',
-            '5' => 'Friday',
-            '6' => 'Saturday',
-            '7' => 'Sunday',
+            '1' => 'Isnin',
+            '2' => 'Selasa',
+            '3' => 'Rabu',
+            '4' => 'Khamis',
+            '5' => 'Jumaat',
+            '6' => 'Sabtu',
+            '7' => 'Ahad',
         ], function($value) { // if the filter is active
             $this->crud->addClause('where', 'day', $value);
         });
@@ -97,6 +97,7 @@ class ScheduleCrudController extends CrudController
         $this->crud->addColumns([
             [
                 'name' => 'child_id',
+                'label' => 'Anak',
                 'type' => 'select',
                 'entity' => 'child', 
                 'model' => Child::class,
@@ -104,21 +105,32 @@ class ScheduleCrudController extends CrudController
             ],
             [
                 'name' => 'day',
+                'label' => 'Hari',
                 'type' => 'select_from_array',
                 'options' => [
-                    '1' => 'Monday',
-                    '2' => 'Tuesday',
-                    '3' => 'Wednesday',
-                    '4' => 'Thursday',
-                    '5' => 'Friday',
-                    '6' => 'Saturday',
-                    '7' => 'Sunday',
+                    '1' => 'Isnin',
+                    '2' => 'Selasa',
+                    '3' => 'Rabu',
+                    '4' => 'Khamis',
+                    '5' => 'Jumaat',
+                    '6' => 'Sabtu',
+                    '7' => 'Ahad',
                 ],
             ],
-            'start_time',
-            'end_time',
-            'name',
             [
+                'name' => 'start_time',
+                'label' => 'Mula Pada',
+            ],
+            [
+                'name' => 'end_time',
+                'label' => 'Akhir Pada',
+            ],
+            [
+                'name' => 'name',
+                'label' => 'Nama Kelas',
+            ],
+            [
+                'label' => 'Link Kelas',
                 'name' => 'class_url',
                 'type' => 'url',
             ],
@@ -144,6 +156,7 @@ class ScheduleCrudController extends CrudController
         $this->crud->addFields([
             [
                 'name' => 'child_id',
+                'label' => 'Anak',
                 'type' => 'select',
                 'entity' => 'child', 
                 'model' => Child::class,
@@ -151,23 +164,34 @@ class ScheduleCrudController extends CrudController
             ],
             [
                 'name' => 'day',
+                'label' => 'Hari',
                 'type' => 'select_from_array',
                 'options' => [
-                    '1' => 'Monday',
-                    '2' => 'Tuesday',
-                    '3' => 'Wednesday',
-                    '4' => 'Thursday',
-                    '5' => 'Friday',
-                    '6' => 'Saturday',
-                    '7' => 'Sunday',
+                    '1' => 'Isnin',
+                    '2' => 'Selasa',
+                    '3' => 'Rabu',
+                    '4' => 'Khamis',
+                    '5' => 'Jumaat',
+                    '6' => 'Sabtu',
+                    '7' => 'Ahad',
                 ],
             ],
-            'start_time',
-            'end_time',
-            'name',
             [
+                'name' => 'start_time',
+                'label' => 'Mula Pada',
+            ],
+            [
+                'name' => 'end_time',
+                'label' => 'Akhir Pada',
+            ],
+            [
+                'name' => 'name',
+                'label' => 'Nama Kelas',
+            ],
+            [
+                'label' => 'Link Kelas',
                 'name' => 'class_url',
-                'type' => 'url'
+                'type' => 'url',
             ],
         ]);
 

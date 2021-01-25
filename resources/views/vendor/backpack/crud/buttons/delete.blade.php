@@ -1,5 +1,5 @@
 @if ($crud->hasAccess('delete'))
-	<a href="javascript:void(0)" onclick="deleteEntry(this)" data-route="{{ url($crud->route.'/'.$entry->getKey()) }}" class="btn btn-sm btn-link" data-button-type="delete"><i class="la la-trash"></i> {{ trans('backpack::crud.delete') }}</a>
+	<a href="javascript:void(0)" onclick="deleteEntry(this)" data-route="{{ url($crud->route.'/'.$entry->getKey()) }}" class="btn btn-sm btn-link" data-button-type="delete"><i class="la la-trash"></i> Hapus</a>
 @endif
 
 {{-- Button Javascript --}}
@@ -17,10 +17,10 @@
 		var route = $(button).attr('data-route');
 
 		swal({
-		  title: "{!! trans('backpack::base.warning') !!}",
-		  text: "{!! trans('backpack::crud.delete_confirm') !!}",
+		  title: "Perhatian",
+		  text: "Adakah anda ingin menghapuskan rekod ini?",
 		  icon: "warning",
-		  buttons: ["{!! trans('backpack::crud.cancel') !!}", "{!! trans('backpack::crud.delete') !!}"],
+		  buttons: ["Batal", "Hapus"],
 		  dangerMode: true,
 		}).then((value) => {
 			if (value) {
@@ -37,7 +37,7 @@
 			          	  // Show a success notification bubble
 			              new Noty({
 		                    type: "success",
-		                    text: "{!! '<strong>'.trans('backpack::crud.delete_confirmation_title').'</strong><br>'.trans('backpack::crud.delete_confirmation_message') !!}"
+		                    text: "<strong>Rekod Dihapuskan</strong><br>Rekod berjaya dihapuskan."
 		                  }).show();
 
 			              // Hide the modal, if any

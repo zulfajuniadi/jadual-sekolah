@@ -30,7 +30,7 @@ class ChildCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Child::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/child');
-        CRUD::setEntityNameStrings('child', 'children');
+        CRUD::setEntityNameStrings('Anak', 'Anak');
     }
 
     /**
@@ -45,7 +45,7 @@ class ChildCrudController extends CrudController
         $this->crud->addColumns([
             [
                 'name' => 'name',
-                'label' => 'Name',
+                'label' => 'Nama',
                 'type' => 'avatar_name'
             ]
         ]);
@@ -94,7 +94,10 @@ class ChildCrudController extends CrudController
     {
         CRUD::setValidation(ChildRequest::class);
 
-        $this->crud->addFields(['name', [
+        $this->crud->addFields([[
+            'name' => 'name',
+            'label' => 'Nama'
+        ], [
             'name' => 'avatar_config',
             'label' => 'Avatar',
             'type' => 'avatar'
