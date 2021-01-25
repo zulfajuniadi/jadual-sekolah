@@ -4,19 +4,19 @@
 @if(isset($field['prefix']) || isset($field['suffix'])) <div class="input-group"> @endif
     @if(isset($field['prefix'])) <div class="input-group-prepend"><span class="input-group-text">{!! $field['prefix'] !!}</span></div> @endif
     <div id='avatar'>
-        <input type="hidden" id="avatar_skincolor" name="avatar_config[skincolor]" value="{{$field['value']['skincolor'] ?? ''}}">
-        <input type="hidden" id="avatar_eyes" name="avatar_config[eyes]" value="{{$field['value']['eyes'] ?? ''}}">
-        <input type="hidden" id="avatar_eyebrows" name="avatar_config[eyebrows]" value="{{$field['value']['eyebrows'] ?? ''}}">
-        <input type="hidden" id="avatar_mouths" name="avatar_config[mouths]" value="{{$field['value']['mouths'] ?? ''}}">
-        <input type="hidden" id="avatar_hairstyles" name="avatar_config[hairstyles]" value="{{$field['value']['hairstyles'] ?? ''}}">
-        <input type="hidden" id="avatar_haircolors" name="avatar_config[haircolors]" value="{{$field['value']['haircolors'] ?? ''}}">
-        <input type="hidden" id="avatar_facialhairs" name="avatar_config[facialhairs]" value="{{$field['value']['facialhairs'] ?? ''}}">
-        <input type="hidden" id="avatar_clothes" name="avatar_config[clothes]" value="{{$field['value']['clothes'] ?? ''}}">
-        <input type="hidden" id="avatar_fabriccolors" name="avatar_config[fabriccolors]" value="{{$field['value']['fabriccolors'] ?? ''}}">
-        <input type="hidden" id="avatar_glasses" name="avatar_config[glasses]" value="{{$field['value']['glasses'] ?? ''}}">
-        <input type="hidden" id="avatar_glassopacity" name="avatar_config[glassopacity]" value="{{$field['value']['glassopacity'] ?? ''}}">
-        <input type="hidden" id="avatar_accesories" name="avatar_config[accesories]" value="{{$field['value']['accesories'] ?? ''}}">
-        <input type="hidden" id="avatar_backgroundcolors" name="avatar_config[backgroundcolors]" value="{{$field['value']['backgroundcolors'] ?? ''}}">
+        <input type="hidden" id="avatar_skincolor" name="avatar_config[skincolor]" value="{{$field['value']['skincolor'] ?? 'd08b5b'}}">
+        <input type="hidden" id="avatar_eyes" name="avatar_config[eyes]" value="{{$field['value']['eyes'] ?? 'default'}}">
+        <input type="hidden" id="avatar_eyebrows" name="avatar_config[eyebrows]" value="{{$field['value']['eyebrows'] ?? 'default2'}}">
+        <input type="hidden" id="avatar_mouths" name="avatar_config[mouths]" value="{{$field['value']['mouths'] ?? 'default'}}">
+        <input type="hidden" id="avatar_hairstyles" name="avatar_config[hairstyles]" value="{{$field['value']['hairstyles'] ?? 'shorthairround'}}">
+        <input type="hidden" id="avatar_haircolors" name="avatar_config[haircolors]" value="{{$field['value']['haircolors'] ?? '404040_262626_101010'}}">
+        <input type="hidden" id="avatar_facialhairs" name="avatar_config[facialhairs]" value="{{$field['value']['facialhairs'] ?? 'none'}}">
+        <input type="hidden" id="avatar_clothes" name="avatar_config[clothes]" value="{{$field['value']['clothes'] ?? 'vneck'}}">
+        <input type="hidden" id="avatar_fabriccolors" name="avatar_config[fabriccolors]" value="{{$field['value']['fabriccolors'] ?? '5199e4'}}">
+        <input type="hidden" id="avatar_glasses" name="avatar_config[glasses]" value="{{$field['value']['glasses'] ?? 'none'}}">
+        <input type="hidden" id="avatar_glassopacity" name="avatar_config[glassopacity]" value="{{$field['value']['glassopacity'] ?? '0.5'}}">
+        <input type="hidden" id="avatar_accesories" name="avatar_config[accesories]" value="{{$field['value']['accesories'] ?? 'none'}}">
+        <input type="hidden" id="avatar_backgroundcolors" name="avatar_config[backgroundcolors]" value="{{$field['value']['backgroundcolors'] ?? 'e5fde2'}}">
         <div id='random' class="random-button">
             <i class="la la-random"></i>
         </div>
