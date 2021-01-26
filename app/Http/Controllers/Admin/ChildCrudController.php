@@ -8,6 +8,14 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Prologue\Alerts\Facades\Alert;
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ScheduleImport;
+use App\Exports\ScheduleExport;
+use App\Exports\ExampleScheduleExport;
+use Illuminate\Http\Request;
+
 /**
  * Class ChildCrudController
  * @package App\Http\Controllers\Admin
@@ -49,6 +57,7 @@ class ChildCrudController extends CrudController
                 'type' => 'avatar_name'
             ]
         ]);
+
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -127,5 +136,85 @@ class ChildCrudController extends CrudController
     {
         $child = Child::findOrFail($id);
         return view('avatar', compact('child'));
+    }
+
+    protected function setupScheduleRoutes($segment, $routeName, $controller)
+    {
+        Route::get($segment.'/{id}/schedule', [
+            'as'        => $routeName.'.schedule.show',
+            'uses'      => $controller.'@showSchedule',
+            'operation' => 'schedule',
+        ]);
+        Route::get($segment.'/{id}/schedule/download', [
+            'as'        => $routeName.'.schedule.download',
+            'uses'      => $controller.'@getSchedule',
+            'operation' => 'schedule',
+        ]);
+        Route::get($segment.'/{id}/schedule/example', [
+            'as'        => $routeName.'.schedule.example',
+            'uses'      => $controller.'@getExampleSchedule',
+            'operation' => 'schedule',
+        ]);
+        Route::post($segment.'/{id}/schedule/import', [
+            'as'        => $routeName.'.schedule.import',
+            'uses'      => $controller.'@importSchedule',
+            'operation' => 'schedule',
+        ]);
+    }
+
+    public function showSchedule($id) 
+    {
+        $this->crud->hasAccessOrFail('update');
+        $this->crud->setOperation('Schedule');
+
+        // get the info for that entry
+        $this->data['entry'] = $this->crud->getEntry($id);
+        $this->data['crud'] = $this->crud;
+        $this->data['title'] = 'Schedule '.$this->crud->entity_name;
+
+        return view('vendor.backpack.crud.schedule', $this->data);
+    }
+
+    public function importSchedule(Request $request, $id)
+    {
+        $this->crud->hasAccessOrFail('update');
+
+        $user_id = backpack_user()->id;
+        $child_id = $id;
+
+        if($request->hasFile('jadual')){
+            $File = $request->file('jadual');
+            $FileName = date('Y-m-d_h-ia_').$File->getClientOriginalName();
+            Storage::disk('public')->putFileAs('imports/', $File, $FileName);
+            $schdule = Excel::import(new ScheduleImport($user_id, $child_id), public_path('/storage/imports/'.$FileName));
+    
+            // show a success message
+            \Alert::success('Muat naik jadual berjaya!')->flash();
+            return \Redirect::to($this->crud->route);
+        }
+        \Alert::error('Muat naik jadual gagal!')->flash();
+        return \Redirect::to($this->crud->route.'/'.$id.'/schedule');
+    }
+
+    protected function setupScheduleDefaults()
+    {
+        $this->crud->allowAccess('schedule');
+
+        $this->crud->operation('list', function() {
+            $this->crud->addButtonFromView('line', 'schedule', 'schedule', 'beginning');  
+        });
+    }
+
+    public function getExampleSchedule() 
+    {
+        return Excel::download(new ExampleScheduleExport, 'jadualku.xlsx');
+    }
+
+    public function getSchedule($id) 
+    {
+        $user_id = backpack_user()->id;
+        $child_id = $id;
+
+        return Excel::download(new ScheduleExport($user_id, $child_id), 'jadualku_'.$user_id.'.xlsx');
     }
 }
