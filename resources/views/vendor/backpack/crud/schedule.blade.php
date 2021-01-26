@@ -61,7 +61,7 @@
                   <span class="la la-download" role="presentation" aria-hidden="true"></span> &nbsp;
                   <span data-value="save_and_back">Muat turun contoh</span>
                 </a>
-                <a class="btn btn-warning ml-2" href="schedule/download">
+                <a class="btn btn-primary ml-2" href="schedule/download">
                   <span class="la la-table" role="presentation" aria-hidden="true"></span> &nbsp;
                   <span data-value="save_and_back">Muat turun jadual</span>
                 </a>
