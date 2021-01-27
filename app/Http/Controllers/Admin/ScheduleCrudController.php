@@ -127,7 +127,7 @@ class ScheduleCrudController extends CrudController
             ],
             [
                 'name' => 'name',
-                'label' => 'Nama Kelas',
+                'label' => 'Nama Subjek',
             ],
             [
                 'label' => 'Link Kelas',
@@ -186,12 +186,13 @@ class ScheduleCrudController extends CrudController
             ],
             [
                 'name' => 'name',
-                'label' => 'Nama Kelas',
+                'label' => 'Nama Subjek',
             ],
             [
                 'label' => 'Link Kelas',
                 'name' => 'class_url',
                 'type' => 'url',
+                'hint' => 'Link Google Meet, Zoom atau apa-apa website yang perlu dibuka semasa kelas berjalan.'
             ],
         ]);
 
