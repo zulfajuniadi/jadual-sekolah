@@ -18,28 +18,34 @@ class ScheduleImport implements ToModel, WithHeadingRow
 
     public function toTime($time){
 
+        $time_regex = "/[0-9.-][0-9.-][:][0-9.-][0-9.-][:][0-9.-][0-9.-]/"; //08:00:00
+        $time_regex2 = "/[0-9.-][0-9.-][:][0-9.-][0-9.-]/";                 //08:00
+
+        //If $time not converted to float value
+        if(preg_match($time_regex, $time, $match) || preg_match($time_regex2, $time, $match)){
+            return $time;
+        }
+
+        //If $time is converted to float value
         if($time <= 1 && $time >= 0){
             $hours = floor($time * 24); 
             $minute_fraction = ($time * 24) - $hours;
             $minutes = $minute_fraction * 60; 
-            $toTime = $hours.":".$minutes;
-            return $toTime;
+            $time = $hours.":".$minutes;
+            return $time;
         }
-        
+
         return 0;
     }
 
     public function model(array $row)
     {
-        $start_time     =  self::toTime($row['Mula Pada']);
-        $end_time       =  self::toTime($row['Akhir Pada']);
-
         return new Schedule([
             'user_id'           => $this->user_id,
             'child_id'          => $this->child_id,
             'day'               => $row['Nombor Hari'], 
-            'start_time'        => $start_time,
-            'end_time'          => $end_time,
+            'start_time'        => self::toTime($row['Mula Pada']),
+            'end_time'          => self::toTime($row['Akhir Pada']),
             'name'              => $row['Nama Kelas'],
             'class_url'         => $row['Link Kelas']
         ]);
