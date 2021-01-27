@@ -17,31 +17,37 @@ class ScheduleImport implements ToModel, WithHeadingRow
     }
 
     public function toTime($time){
+        $check = preg_match('/(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?/', $time);
+        $this->test = $check;
 
-        if($time <= 1 && $time >= 0){
-            $hours = floor($time * 24); 
-            $minute_fraction = ($time * 24) - $hours;
-            $minutes = $minute_fraction * 60; 
-            $toTime = $hours.":".$minutes;
-            return $toTime;
+        if($check == 0){
+            if($time >=0 && $time < 1.0 && is_int($time)){
+                $time = $time * 86400;
+                date('H:i', $time);
+                return $time;
+            }
+            return 0;
         }
-        
-        return 0;
+        return $time;
+    }
+
+    public function checkDay($day){
+        if(!(is_int($day)) || ($day > 7) || (empty($day))){
+            return 0;
+        }
+        return $day;
     }
 
     public function model(array $row)
     {
-        $start_time     =  self::toTime($row['Mula Pada']);
-        $end_time       =  self::toTime($row['Akhir Pada']);
-
         return new Schedule([
             'user_id'           => $this->user_id,
             'child_id'          => $this->child_id,
-            'day'               => $row['Nombor Hari'], 
-            'start_time'        => $start_time,
-            'end_time'          => $end_time,
-            'name'              => $row['Nama Kelas'],
-            'class_url'         => $row['Link Kelas']
+            'day'               => self::checkday($row['Nombor Hari']), 
+            'start_time'        => self::toTime($row['Mula Pada']),
+            'end_time'          => self::toTime($row['Akhir Pada']),
+            'name'              => $row['Nama Kelas'] ? $row['Nama Kelas'] : '-',
+            'class_url'         => $row['Link Kelas'] ? $row['Link Kelas'] : '-'
         ]);
     }
 }
