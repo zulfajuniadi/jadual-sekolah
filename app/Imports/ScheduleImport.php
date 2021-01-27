@@ -16,14 +16,30 @@ class ScheduleImport implements ToModel, WithHeadingRow
         $this->child_id = $child_id;
     }
 
+    public function toTime($time){
+
+        if($time <= 1 && $time >= 0){
+            $hours = floor($time * 24); 
+            $minute_fraction = ($time * 24) - $hours;
+            $minutes = $minute_fraction * 60; 
+            $toTime = $hours.":".$minutes;
+            return $toTime;
+        }
+        
+        return 0;
+    }
+
     public function model(array $row)
     {
+        $start_time     =  self::toTime($row['Mula Pada']);
+        $end_time       =  self::toTime($row['Akhir Pada']);
+
         return new Schedule([
             'user_id'           => $this->user_id,
             'child_id'          => $this->child_id,
             'day'               => $row['Nombor Hari'], 
-            'start_time'        => $row['Mula Pada'], 
-            'end_time'          => $row['Akhir Pada'], 
+            'start_time'        => $start_time,
+            'end_time'          => $end_time,
             'name'              => $row['Nama Kelas'],
             'class_url'         => $row['Link Kelas']
         ]);

@@ -190,7 +190,7 @@ class ChildCrudController extends CrudController
     
             // show a success message
             \Alert::success('Muat naik jadual berjaya!')->flash();
-            return \Redirect::to($this->crud->route);
+            return \Redirect::to('/app/schedule');
         }
         \Alert::error('Muat naik jadual gagal!')->flash();
         return \Redirect::to($this->crud->route.'/'.$id.'/schedule');

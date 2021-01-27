@@ -6,8 +6,9 @@ use App\Models\Schedule;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class ScheduleExport implements FromView
+class ScheduleExport implements FromView, ShouldAutoSize
 {
     function __construct($user_id, $child_id) {
         $this->user_id = $user_id;
