@@ -66,16 +66,8 @@ jobs:
         with:
           time: '5s'
 
-      - name: Migrate database
-        run: php artisan migrate:refresh --seed
-        env:
-          DB_PORT: ${{ job.services.mysql.ports[3306] }}
-          DB_USERNAME: root
-          DB_DATABASE: jadual_test
-          DB_CONNECTION: mysql
-
       - name: Execute Feature Tests
-        run: vendor/bin/phpunit -c phpunit.xml
+        run: composer run test
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
           DB_USERNAME: root

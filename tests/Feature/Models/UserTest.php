@@ -16,8 +16,7 @@ class UserTest extends TestCase
     public function it_can_generate_public_slug_for_created_user()
     {
         $user = UserFactory::new()->create([
-            'name' => 'Zulfa Juniadi',
-            'email' => 'zulfajuniadi@gmail.com',
+            'name' => 'Jasdy Syarman',
         ]);
 
         $this->assertNotNull($user->public_slug);
