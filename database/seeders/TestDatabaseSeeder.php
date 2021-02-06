@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Database\Factories\ChildFactory;
 use Database\Factories\ScheduleFactory;
 use Database\Factories\UserFactory;
@@ -16,18 +17,25 @@ class TestDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $monday = '1';
-
         $guardian = UserFactory::new()->create([
             'name' => 'Zulfa Juniadi',
             'email' => 'zulfajuniadi@gmail.com',
         ]);
 
+        $this->addNaufal($guardian);
+        $this->addSarah($guardian);
+        $this->addSyafiq($guardian);
+    }
+
+    protected function addNaufal(User $guardian)
+    {
         $naufal = ChildFactory::new()->guardian($guardian)->create([
             'name' => 'Naufal',
             'points' => 1,
             'avatar_config' => json_decode('{"eyes": "default", "mouths": "default", "clothes": "vneck", "glasses": "none", "eyebrows": "default2", "skincolor": "d08b5b", "accesories": "none", "haircolors": "404040_262626_101010", "hairstyles": "shorthairround", "facialhairs": "none", "fabriccolors": "5199e4", "glassopacity": "0.5", "backgroundcolors": "e5fde2"}', true),
         ]);
+
+        $monday = '1';
 
         ScheduleFactory::new()->student($naufal)->create([
             'day' => $monday,
@@ -35,12 +43,17 @@ class TestDatabaseSeeder extends Seeder
             'end_time' => '15:30',
             'name' => 'ORI',
         ]);
+    }
 
+    protected function addSarah(User $guardian)
+    {
         $sarah = ChildFactory::new()->guardian($guardian)->create([
             'name' => 'Sarah',
             'points' => 2,
             'avatar_config' => json_decode('{"eyes": "hearts", "mouths": "smile", "clothes": "overall", "glasses": "none", "eyebrows": "default2", "skincolor": "ffdbb4", "accesories": "none", "haircolors": "404040_262626_101010", "hairstyles": "longhairbob", "facialhairs": "none", "fabriccolors": "ffafb9", "glassopacity": "0.5", "backgroundcolors": "d1d0fc"}', true),
         ]);
+
+        $monday = '1';
 
         ScheduleFactory::new()->student($sarah)->create([
             'day' => $monday,
@@ -69,12 +82,17 @@ class TestDatabaseSeeder extends Seeder
             'end_time' => '16:00',
             'name' => 'PAI'
         ]);
+    }
 
+    protected function addSyafiq(User $guardian)
+    {
         $syafiq = ChildFactory::new()->guardian($guardian)->create([
             'name' => 'Syafiq',
             'points' => 1,
             'avatar_config' => json_decode('{"eyes": "default", "mouths": "serious", "clothes": "hoodie", "glasses": "old", "eyebrows": "unibrow", "skincolor": "d08b5b", "accesories": "none", "haircolors": "404040_262626_101010", "hairstyles": "shorthairdreads", "facialhairs": "none", "fabriccolors": "25557c", "glassopacity": "0.5", "backgroundcolors": "d5effd"}', true),
         ]);
+
+        $monday = '1';
 
         ScheduleFactory::new()->student($syafiq)->create([
             'day' => $monday,
