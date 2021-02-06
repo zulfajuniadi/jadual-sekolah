@@ -82,10 +82,9 @@ jobs:
           DB_CONNECTION: mysql
 
       - name: Run Dusk Tests
-        env:
-          APP_URL: "http://127.0.0.1:8000"
         run: php artisan dusk
         env:
+          APP_URL: "http://127.0.0.1:8000"
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
           DB_USERNAME: root
           DB_DATABASE: jadual_test
