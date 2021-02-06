@@ -11,7 +11,7 @@
     </div>
 
     <div class="row mt-3">
-        <div class="col-lg-4 col-md-6 text-center" ng-repeat="child in children">
+        <div dusk="{{child.id}}-schedule" class="col-lg-4 col-md-6 text-center" ng-repeat="child in children">
             <div class="div">
                 <div class="card-header">
                     <img src="/avatar/{{child.id}}.svg" class="schedule-avatar" alt="">
