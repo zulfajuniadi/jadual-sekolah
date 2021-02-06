@@ -5,6 +5,7 @@ namespace Tests\Feature\Models;
 use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -20,5 +21,6 @@ class UserTest extends TestCase
         ]);
 
         $this->assertNotNull($user->public_slug);
+        $this->assertTrue(Str::startsWith($user->public_slug, Str::slug($user->name)));
     }
 }
