@@ -68,7 +68,7 @@ jobs:
 
       - name: Execute Feature Tests
         run: |
-          php artisan migrate:refresh --seed --seeder='\\Database\\Seeders\\TestDatabaseSeeder' --quiet
+          php artisan migrate:refresh --seed --seeder="\Database\Seeders\TestDatabaseSeeder" --quiet
           php vendor/bin/phpunit -c phpunit.xml
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
