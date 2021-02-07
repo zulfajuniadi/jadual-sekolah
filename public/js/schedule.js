@@ -12,6 +12,10 @@ angular.module('app', [])
 
     const todayDay = (new Date).getDay();
     let selectedDay = todayDay;
+    if (todayDay == 0) {
+        selectedDay = 7;
+    }
+
     $scope.selectedDayName = $scope.days[selectedDay];
 
     $scope.children = [];
