@@ -14,11 +14,11 @@ class LoginTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/app/login')
-                ->waitForText('Log Masuk')
+                ->waitForText('Log Masuk', 25)
                 ->type('email', 'zulfajuniadi@gmail.com')
                 ->type('password', 'password')
                 ->press('Log Masuk')
-                ->waitForText('Jadual Hari')
+                ->waitForText('Jadual Hari', 25)
                 ->assertPathIs('/app/dashboard')
                 ->assertAuthenticatedAs(User::find(1), backpack_guard_name());
 
@@ -31,7 +31,7 @@ class LoginTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/app/login')
-                ->waitForText('Log Masuk')
+                ->waitForText('Log Masuk', 25)
                 ->type('email', 'syafiq@gmail.com')
                 ->type('password', 'password')
                 ->press('Log Masuk')
